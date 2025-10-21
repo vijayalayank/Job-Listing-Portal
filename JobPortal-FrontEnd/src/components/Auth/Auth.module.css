@@ -1,6 +1,119 @@
-.contain{
-    border: 2px solid red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.authContainer {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+.authFormCard {
+  background: #ffffff;
+  width: 400px;
+  border-radius: 15px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.authFormCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.authFormCard h2 {
+  margin-bottom: 25px;
+  font-size: 28px;
+  color: #2575fc;
+  font-weight: 600;
+}
+
+.roleSelector {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.roleSelector button {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: 50px;
+  border: 2px solid #2575fc;
+  background: white;
+  color: #2575fc;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.roleSelector button:hover {
+  background: #2575fc;
+  color: white;
+}
+
+.roleSelector .active {
+  background: #2575fc;
+  color: white;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.authForm input,
+.authForm select {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.authForm input:focus,
+.authForm select:focus {
+  border-color: #2575fc;
+  outline: none;
+  box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+}
+
+.authForm button {
+  padding: 12px;
+  border-radius: 50px;
+  border: none;
+  background: #2575fc;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.authForm button:hover {
+  background: #6a11cb;
+  transform: translateY(-2px);
+}
+
+.toggle {
+  margin-top: 15px;
+  font-weight: 500;
+  color: #2575fc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .authFormCard {
+    width: 90%;
+    padding: 30px 20px;
+  }
 }
