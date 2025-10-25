@@ -22,6 +22,6 @@
   transition: 0.3s;
 }
 
-.nav-links a:hover {
+.navlink a:hover {
   text-decoration: underline;
 }
