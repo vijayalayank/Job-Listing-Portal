@@ -1,27 +1,28 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Register/Home";
-import About from "./pages/Register/About";
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
 import Register from "./pages/Register/Register";
+import { NavBar } from "./Layout/NavBar/NavBar";
 import "./App.css";
+import Login from "./pages/LogIn/Login";
+
 
 function App() {
   return (
+     <>
+     
     <BrowserRouter>
-      <nav className="navbar">
-        <div className="logo">JobPortal</div>
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/register">Register/Login</Link>
-        </div>
-      </nav>
+     <NavBar/>
       <Routes>
+        
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login/>} />
       </Routes>
     </BrowserRouter>
+    </>
   );
 }
 
