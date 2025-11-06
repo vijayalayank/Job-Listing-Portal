@@ -1,28 +1,39 @@
+// auth-service/src/server.js
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import { connectDB } from "./utils/ConnectDB.js";
 
 dotenv.config();
 const app = express();
 
+app.use(
+  cors({
+    origin: ["http://localhost:5000","http://localhost:5173"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
+// Unified logging middleware
+app.use((req, res, next) => {
+  console.log(`➡️ [${req.method}] ${req.originalUrl}`, req.body ? `Body: ${JSON.stringify(req.body)}` : "");
+  next();
+});
+
 // Connect to MongoDB
-const startServer = async () => {
-  try {
-    await connectDB();
-    console.log("✅ Connected to MongoDB");
+await connectDB();
+console.log("✅ Connected to MongoDB");
 
-    // Routes
-    app.use("/api/auth", authRoutes);
+// Mount routes
+app.use("/api/auth", authRoutes);
 
-    const PORT = process.env.PORT || 5001;
-    app.listen(PORT, () => console.log(`✅ Auth Service running on port ${PORT}`));
-  } catch (err) {
-    console.error("❌ Failed to start server", err);
-    process.exit(1);
-  }
-};
+// Error handler
+app.use((err, req, res, next) => {
+  console.error("❌ Error:", err.message);
+  res.status(500).json({ success: false, message: "Internal Server Error" });
+});
 
-startServer();
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => console.log(`✅ Auth Service running on port ${PORT}`));

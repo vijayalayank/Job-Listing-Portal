@@ -1,8 +1,9 @@
 
 // src/pages/Register.jsx
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./RegisterPage.module.css";
+import api from "../../../api/axios";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -11,19 +12,32 @@ const RegisterPage = () => {
     name: "",
     email: "",
     password: "",
-    Role:role,
+    role:role,
   });
 
+
+  useEffect(() => {
+  setFormData((prev) => ({ ...prev, role }));
+}, [role]);
  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(formData)
-    navigate("/login");
+    console.log(formData);
+    try {
+      const res = await api.post("/auth/register", formData);
+      console.log("✅ Registered successfully:", res.data);
+
+      if(res){
+        navigate("/login");
+      }
+    } catch (err) {
+      console.error("❌ Registration error:", err.response?.data || err.message);
+    }
   };
 
   return (
@@ -40,7 +54,8 @@ const RegisterPage = () => {
           </button>
           <button
             className={role === "employer" ? styles.active : ""}
-            onClick={() => setRole("employer")}
+            onClick={() => {
+              setRole("employer"); console.log("employer")}}
           >
             Employer
           </button>

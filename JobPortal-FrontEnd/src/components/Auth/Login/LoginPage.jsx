@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginPage.module.css";
+import api from "../../../api/axios";
+
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -11,29 +13,27 @@ const LoginPage = () => {
     password: "",
   });
 
-  const mockDB = {
-    jobseeker: [{ email: "job@example.com", password: "1234" }],
-    employer: [{ email: "emp@example.com", password: "1234" }],
-  };
+  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    const userExists = mockDB[role].some(
-      (user) =>
-        user.email === formData.email && user.password === formData.password
-    );
+    try{
+      const res = await api.post("/auth/login",formData, { withCredentials: true } );
+      console.log(res);
 
-    if (userExists) {
-      alert(`Login successful for ${role}!`);
-      navigate("/profile");
-    } else {
-      alert(`No account found for this ${role}. Please register.`);
-      navigate("/register");
+      if(res){
+        navigate("/");
+      }
+
     }
+    catch(e){
+      console.log(e);
+    }
+    
   };
 
   return (

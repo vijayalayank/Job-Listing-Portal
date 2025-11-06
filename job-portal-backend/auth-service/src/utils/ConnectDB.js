@@ -10,7 +10,7 @@ let db;
 export const connectDB = async()=>{
         try {
     await client.connect();
-    db = client.db(); // database from URI
+    db = client.db("JobListingPortal"); // database from URI
     console.log("✅ MongoDB Auth Service Connected");
   } catch (error) {
     console.error("❌ MongoDB Connection Error:", error);

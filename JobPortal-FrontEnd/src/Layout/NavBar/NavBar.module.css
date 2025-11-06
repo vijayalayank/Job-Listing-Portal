@@ -21,7 +21,15 @@
   font-weight: 500;
   transition: 0.3s;
 }
+.navlink{
+  display: flex;
+}
 
 .navlink a:hover {
   text-decoration: underline;
+}
+
+
+.auth{
+  display: flex;
 }
