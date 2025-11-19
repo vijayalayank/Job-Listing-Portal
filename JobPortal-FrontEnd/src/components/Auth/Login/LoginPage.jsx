@@ -1,19 +1,24 @@
 // src/pages/Login.jsx
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginPage.module.css";
 import api from "../../../api/axios";
+import { useSession } from "../../../context/SessionContext"
 
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { setSession } = useSession();
   const [role, setRole] = useState("jobseeker");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    role:role,
   });
 
-  
+  useEffect(()=>{
+    setFormData((prev) => ({ ...prev, role }));
+  },[role]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,6 +31,7 @@ const LoginPage = () => {
       console.log(res);
 
       if(res){
+        setSession(true); 
         navigate("/");
       }
 

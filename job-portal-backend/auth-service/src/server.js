@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import { connectDB } from "./utils/ConnectDB.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 const app = express();
@@ -15,6 +16,8 @@ app.use(
   })
 );
 app.use(express.json());
+
+app.use(cookieParser());
 
 // Unified logging middleware
 app.use((req, res, next) => {

@@ -23,6 +23,7 @@
 }
 .navlink{
   display: flex;
+  gap:1rem;
 }
 
 .navlink a:hover {
@@ -32,4 +33,5 @@
 
 .auth{
   display: flex;
+  gap:1rem;
 }

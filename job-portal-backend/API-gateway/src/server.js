@@ -4,9 +4,12 @@ import morgan from "morgan"
 import dotenv from "dotenv";
 import routes from "./routes/index.js"
 import { errorHandling } from "./middlewares/errorHandler.js";
+import cookieParser from "cookie-parser"
 
 dotenv.config();
 const app = express();
+
+
 
 app.use(cors(
     {
@@ -17,6 +20,8 @@ app.use(cors(
 ));
 app.use(morgan("dev"));
 app.use(express.json());
+
+app.use(cookieParser())
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", "true");
