@@ -35,14 +35,39 @@ const JobDetails = () => {
         experience: ''
     });
 
+    const [resumeType, setResumeType] = useState('link'); // 'link' or 'file'
+    const [resumeFile, setResumeFile] = useState(null);
+
     const handleApply = async (e) => {
         e.preventDefault();
         try {
-            await api.post('/applications', {
-                jobId: id,
-                applicantId: userid,
-                ...appData
+            const formData = new FormData();
+            formData.append('jobId', id);
+            formData.append('applicantId', userid);
+            formData.append('applicantName', appData.applicantName);
+            formData.append('applicantEmail', appData.applicantEmail);
+            formData.append('phone', appData.phone);
+            formData.append('skills', appData.skills);
+            formData.append('experience', appData.experience);
+
+            if (resumeType === 'file') {
+                if (!resumeFile) {
+                    alert("Please select a file to upload.");
+                    return;
+                }
+                formData.append('resumeFile', resumeFile);
+            } else {
+                if (!appData.resumeUrl) {
+                    alert("Please enter a resume URL.");
+                    return;
+                }
+                formData.append('resumeUrl', appData.resumeUrl);
+            }
+
+            await api.post('/applications', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' }
             });
+
             alert("Application submitted successfully!");
             setApplying(false);
         } catch (error) {
@@ -111,7 +136,30 @@ const JobDetails = () => {
                             <input name="phone" placeholder="Phone Number" value={appData.phone} onChange={handleChange} className={styles.input} />
                             <input name="skills" placeholder="Skills (comma separated)" value={appData.skills} onChange={handleChange} className={styles.input} />
                             <input name="experience" placeholder="Experience" value={appData.experience} onChange={handleChange} className={styles.input} />
-                            <input name="resumeUrl" placeholder="Resume Link (Drive/Dropbox URL)" value={appData.resumeUrl} onChange={handleChange} required className={styles.input} />
+
+                            {/* Resume Section */}
+                            <div className={styles.resumeSection}>
+                                <div className={styles.toggleContainer}>
+                                    <button
+                                        type="button"
+                                        className={`${styles.toggleBtn} ${resumeType === 'link' ? styles.active : ''}`}
+                                        onClick={() => setResumeType('link')}>
+                                        Resume Link
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className={`${styles.toggleBtn} ${resumeType === 'file' ? styles.active : ''}`}
+                                        onClick={() => setResumeType('file')}>
+                                        Upload File
+                                    </button>
+                                </div>
+
+                                {resumeType === 'link' ? (
+                                    <input name="resumeUrl" placeholder="Resume Link (Drive/Dropbox URL)" value={appData.resumeUrl} onChange={handleChange} className={styles.input} />
+                                ) : (
+                                    <input type="file" onChange={(e) => setResumeFile(e.target.files[0])} className={styles.input} accept=".pdf,.doc,.docx" />
+                                )}
+                            </div>
 
                             <div className={styles.buttonGroup}>
                                 <button type="submit" className={styles.applyBtn}>Submit Application</button>

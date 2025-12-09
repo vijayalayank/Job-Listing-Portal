@@ -20,6 +20,8 @@ app.use(morgan('dev'));
 // Routes
 app.use('/api/jobs', jobRoutes);
 app.use('/api/applications', applicationRoutes);
+// Serve uploaded resumes statically under /api/jobs/uploads to match Gateway routing
+app.use('/api/jobs/uploads', express.static('uploads'));
 
 app.get('/', (req, res) => {
     res.send('Job Service is running');
