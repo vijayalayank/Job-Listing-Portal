@@ -52,29 +52,60 @@ const PostJob = () => {
     };
 
     return (
-        <div className={styles.postJobContainer}>
-            <h2 className={styles.title}>Post a New Job</h2>
-            <form onSubmit={handleSubmit} className={styles.form}>
-                <input name="title" placeholder="Job Title" value={formData.title} onChange={handleChange} required className={styles.formInput} />
-                <input name="company" placeholder="Company Name" value={formData.company} onChange={handleChange} required className={styles.formInput} />
-                <input name="location" placeholder="Location" value={formData.location} onChange={handleChange} required className={styles.formInput} />
-
-                <select name="type" value={formData.type} onChange={handleChange} className={styles.formSelect}>
-                    <option value="Full-time">Full-time</option>
-                    <option value="Part-time">Part-time</option>
-                    <option value="Contract">Contract</option>
-                    <option value="Internship">Internship</option>
-                </select>
-
-                <input name="salaryRange" placeholder="Salary Range (e.g. $50k - $70k)" value={formData.salaryRange} onChange={handleChange} className={styles.formInput} />
-
-                <textarea name="description" placeholder="Job Description" rows="5" value={formData.description} onChange={handleChange} required className={styles.formTextarea} />
-
-                <div className={styles.buttonGroup}>
-                    <button type="submit" className={styles.submitBtn}>Submit Job Post</button>
-                    <button type="button" onClick={() => navigate('/dashboard')} className={styles.cancelBtn}>Cancel</button>
+        <div className={styles.pageWrapper}>
+            <div className={styles.cardContainer}>
+                <div className={styles.header}>
+                    <div className={styles.iconBox}>✨</div>
+                    <div>
+                        <h2 className={styles.title}>Post a New Job</h2>
+                        <p className={styles.subtitle}>Create a listing to find your perfect candidate</p>
+                    </div>
                 </div>
-            </form>
+
+                <form onSubmit={handleSubmit} className={styles.form}>
+                    <div className={styles.inputGroup}>
+                        <label>Job Title</label>
+                        <input name="title" placeholder="e.g. Senior Product Designer" value={formData.title} onChange={handleChange} required className={styles.formInput} />
+                    </div>
+
+                    <div className={styles.row}>
+                        <div className={styles.inputGroup}>
+                            <label>Company</label>
+                            <input name="company" placeholder="Company Name" value={formData.company} onChange={handleChange} required className={styles.formInput} />
+                        </div>
+                        <div className={styles.inputGroup}>
+                            <label>Location</label>
+                            <input name="location" placeholder="e.g. Remote / New York" value={formData.location} onChange={handleChange} required className={styles.formInput} />
+                        </div>
+                    </div>
+
+                    <div className={styles.row}>
+                        <div className={styles.inputGroup}>
+                            <label>Job Type</label>
+                            <select name="type" value={formData.type} onChange={handleChange} className={styles.formSelect}>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Contract">Contract</option>
+                                <option value="Internship">Internship</option>
+                            </select>
+                        </div>
+                        <div className={styles.inputGroup}>
+                            <label>Salary Range</label>
+                            <input name="salaryRange" placeholder="e.g. $50k - $70k" value={formData.salaryRange} onChange={handleChange} className={styles.formInput} />
+                        </div>
+                    </div>
+
+                    <div className={styles.inputGroup}>
+                        <label>Description</label>
+                        <textarea name="description" placeholder="Describe the role, responsibilities, and requirements..." rows="6" value={formData.description} onChange={handleChange} required className={styles.formTextarea} />
+                    </div>
+
+                    <div className={styles.buttonGroup}>
+                        <button type="submit" className={styles.submitBtn}>Submit Job Post</button>
+                        <button type="button" onClick={() => navigate('/dashboard')} className={styles.cancelBtn}>Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
