@@ -37,8 +37,8 @@
     border-radius: 24px;
     /* Increased rounded corners */
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-    display: grid;
-    grid-template-columns: 2fr 1.5fr 1fr auto;
+    display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
     margin-bottom: 3rem;
@@ -50,11 +50,12 @@
     align-items: center;
     background: white;
     border-radius: 9999px;
-    /* Pill shape */
     padding: 0.2rem 1rem;
     border: 1px solid var(--border-color);
-    /* Visible border */
     transition: all 0.2s;
+    flex: 2;
+    /* Take available space */
+    min-width: 200px;
 }
 
 .inputGroup:focus-within {
@@ -76,6 +77,11 @@
     color: #9ca3af;
 }
 
+.selectGroup {
+    flex: 1;
+    min-width: 150px;
+}
+
 .selectGroup select {
     background: white;
     border: 1px solid var(--border-color);
@@ -92,11 +98,13 @@
 }
 
 .searchBtn {
+    flex: 0 0 auto;
+    /* Do not shrink */
     padding: 0.9rem 2rem;
     font-size: 1rem;
     white-space: nowrap;
     background-color: var(--primary-color);
-    color: white;
+    color: black;
     font-weight: 600;
     border: none;
     border-radius: 9999px;
