@@ -1,0 +1,79 @@
+.postJobContainer {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--surface-color);
+    box-shadow: var(--shadow-md);
+}
+
+.title {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+    /* Inherits global input styles, but local overrides if needed */
+    width: 100%;
+}
+
+.submitBtn {
+    background-color: #6366f1;
+    /* Hardcoded fallback */
+    background-color: var(--primary-color, #6366f1);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 9999px;
+    /* Pill */
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    /* Ensure visibility */
+    display: inline-block;
+    min-width: 150px;
+    text-align: center;
+}
+
+.submitBtn:hover {
+    background-color: #4338ca;
+    /* Darker indigo */
+    color: white;
+    opacity: 0.9;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.cancelBtn {
+    background-color: transparent;
+    color: var(--text-secondary);
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cancelBtn:hover {
+    background-color: #f3f4f6;
+    color: var(--text-primary);
+}

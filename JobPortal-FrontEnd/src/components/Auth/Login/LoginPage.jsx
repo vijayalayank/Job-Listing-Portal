@@ -1,5 +1,5 @@
 // src/pages/Login.jsx
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginPage.module.css";
 import api from "../../../api/axios";
@@ -8,38 +8,39 @@ import { useSession } from "../../../context/SessionContext"
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { setSession } = useSession();
+  const { setSession, checkAuth } = useSession(); // Destructure checkAuth
   const [role, setRole] = useState("jobseeker");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    role:role,
+    role: role,
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     setFormData((prev) => ({ ...prev, role }));
-  },[role]);
+  }, [role]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-      const res = await api.post("/auth/login",formData, { withCredentials: true } );
+    try {
+      const res = await api.post("/auth/login", formData, { withCredentials: true });
       console.log(res);
 
-      if(res){
-        setSession(true); 
+      if (res) {
+        // await setSession(true); // checkAuth does this
+        await checkAuth(); // Refresh session/role/userid from cookie
         navigate("/");
       }
 
     }
-    catch(e){
+    catch (e) {
       console.log(e);
     }
-    
+
   };
 
   return (
@@ -85,7 +86,7 @@ const LoginPage = () => {
         </form>
 
         <p>
-          Don’t have an account? <span  onClick={() => navigate("/register")} className={styles.toggle}>Register</span>
+          Don’t have an account? <span onClick={() => navigate("/register")} className={styles.toggle}>Register</span>
         </p>
       </div>
     </div>

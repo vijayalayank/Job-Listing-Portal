@@ -9,34 +9,44 @@ export function SessionProvider({ children }) {
   const [role, setRole] = useState("");
   const [userid, setUserid] = useState("");
 
-  useEffect(() => {
-    async function check() {
-      try {
-        const res = await api.get("/auth/status");
-        console.log(res);
-        
-        // Example response:
-        // res.data = { loggedIn: true, user: { userId: "...", role: "jobseeker" } }
+  const checkAuth = async () => {
+    try {
+      const res = await api.get("/auth/status");
+      console.log("Auth Status Check:", res.data);
 
-        if (res.data.loggedIn) {
-          setSession(true);
-          setUserid(res.data.user.userId);
-          setRole(res.data.user.role);
-        } else {
-          setSession(false);
-          setUserid("");
-          setRole("");
-        }
-      } catch (e) {
-        console.log("Auth status check failed:", e);
+      if (res.data.loggedIn) {
+        setSession(true);
+        setUserid(res.data.user.userId);
+        setRole(res.data.user.role);
+      } else {
         setSession(false);
         setUserid("");
         setRole("");
       }
+    } catch (e) {
+      console.log("Auth status check failed:", e);
+      setSession(false);
+      setUserid("");
+      setRole("");
     }
+  };
 
-    check();
+  useEffect(() => {
+    checkAuth();
   }, []);
+
+  const logout = async () => {
+    try {
+      await api.post("/auth/logout");
+    } catch (e) {
+      console.error("Logout failed", e);
+    } finally {
+      setSession(false);
+      setRole("");
+      setUserid("");
+      // checkAuth(); // Optional, but logout clears state locally anyway
+    }
+  };
 
   return (
     <SessionContext.Provider
@@ -47,6 +57,8 @@ export function SessionProvider({ children }) {
         userid,
         setRole,
         setUserid,
+        logout,
+        checkAuth, // Expose checkAuth
       }}
     >
       {children}

@@ -1,0 +1,176 @@
+.sectionContainer {
+    padding: 5rem 5%;
+    background-color: var(--background-color);
+    /* Use light gray or white depending on contrast with Features section. 
+       Features used surface (whiteish), so let's keep this light gray or simple whitespace. */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
+}
+
+.cardHeader {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+}
+
+.iconBox {
+    background-color: #f5f3ff;
+    color: var(--primary-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.jobTitle {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+.companyName {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.cardBody {
+    margin-bottom: 2rem;
+}
+
+.infoRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.salary {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.cardFooter {
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1rem;
+}
+
+.applyBtn {
+    background-color: #4f46e5;
+    /* Distinct purple/blue */
+    color: white;
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.applyBtn:hover {
+    background-color: #4338ca;
+}
+
+.viewBtn {
+    background-color: white;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.viewBtn:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.viewAllContainer {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.viewAllLink {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+}
+
+.viewAllLink:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: var(--primary-color);
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cardFooter {
+        grid-template-columns: 1fr;
+    }
+}

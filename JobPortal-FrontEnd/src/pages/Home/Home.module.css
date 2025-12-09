@@ -1,0 +1,357 @@
+.homeContainer {
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    /* min-height: 100vh; */
+    /* Let content define height */
+    display: flex;
+    flex-direction: column;
+    /* Stack children vertically */
+    /* align-items: center; */
+    /* Remove center alignment to allow full width sections */
+    padding: 0;
+    /* Remove global padding, move to sections */
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Specific wrapper for the hero part to keep its original spacing */
+.heroWrapper {
+    min-height: calc(100vh - 80px);
+    /* Fill screen minus navbar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 5%;
+    width: 100%;
+}
+
+/* Subtle background gradient */
+.backgroundGradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* This might need to cover full height if page grows. Fixed is safer */
+    /* background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.05) 0%, transparent 40%); */
+    /* z-index: -1; */
+    /* Better to use fixed for full page feeling */
+}
+
+/* Fixed Background */
+.backgroundGradient {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.05) 0%, transparent 40%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.heroSection {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    /* Text wider than image usually looks good */
+    gap: 4rem;
+    max-width: 1300px;
+    width: 100%;
+    align-items: center;
+}
+
+/* Left Content Styles */
+.heroContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.heroTitle {
+    font-size: 4rem;
+    line-height: 1.1;
+    color: #111827;
+    /* Dark Gray */
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0;
+}
+
+.highlight {
+    color: #6366f1;
+    /* Primary Purple */
+}
+
+.heroSubtitle {
+    font-size: 1.15rem;
+    color: #6b7280;
+    /* Text Secondary */
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+/* Search Bar */
+.searchBarContainer {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    border-radius: 9999px;
+    /* Pill */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    border: 1px solid #f3f4f6;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 1rem;
+}
+
+.employerActions {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    align-items: center;
+}
+
+.heroPostJobBtn {
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+    transition: all 0.2s;
+}
+
+.heroPostJobBtn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.heroDashboardBtn {
+    background-color: white;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s;
+}
+
+.heroDashboardBtn:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.searchIcon {
+    font-size: 1.2rem;
+    margin-right: 0.8rem;
+    opacity: 0.5;
+}
+
+.heroSearchInput {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    color: #111827;
+    outline: none;
+    padding: 0.5rem 0;
+}
+
+.heroSearchInput::placeholder {
+    color: #9ca3af;
+}
+
+.heroSearchBtn {
+    background-color: #6366f1;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+}
+
+.heroSearchBtn:hover {
+    background-color: #4f46e5;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* Stats Row */
+.statsRow {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.statItem h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0;
+}
+
+.statItem h3::after {
+    content: "+";
+    color: #6366f1;
+}
+
+.statItem p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+/* Right Image Styles */
+.heroImageWrapper {
+    position: relative;
+    border-radius: 24px;
+    overflow: visible;
+}
+
+.heroImage {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+/* Floating Card */
+.floatingCard {
+    position: absolute;
+    bottom: 40px;
+    left: -30px;
+    /* Overlap left edge */
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid #f3f4f6;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.iconBox {
+    width: 40px;
+    height: 40px;
+    background: #ecfdf5;
+    /* Light green */
+    color: #10b981;
+    /* Green */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
+.cardText h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.cardText p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+    .heroSection {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .heroContent {
+        align-items: center;
+    }
+
+    .searchBarContainer {
+        width: 100%;
+        justify-content: center;
+        /* Center content internally if needed */
+    }
+
+    .heroImageWrapper {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .floatingCard {
+        left: 10px;
+        bottom: 20px;
+    }
+
+    .heroTitle {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .heroTitle {
+        font-size: 2.5rem;
+    }
+
+    .statsRow {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .searchBarContainer {
+        padding: 0.5rem 1rem;
+        flex-direction: column;
+        /* Stack input and button */
+        border-radius: 20px;
+    }
+
+    .heroSearchInput {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .heroSearchBtn {
+        width: 100%;
+    }
+
+    .employerActions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .heroPostJobBtn,
+    .heroDashboardBtn {
+        width: 100%;
+        text-align: center;
+    }
+}

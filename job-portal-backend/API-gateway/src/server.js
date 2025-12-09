@@ -12,11 +12,11 @@ const app = express();
 
 
 app.use(cors(
-    {
-         origin: ["http://localhost:5173"],
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        credentials: true,
-    }
+  {
+    origin: ["http://localhost:5173", "http://localhost:5174"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  }
 ));
 app.use(morgan("dev"));
 app.use(express.json());
@@ -45,8 +45,8 @@ app.use(routes);
 app.use(errorHandling);
 
 
-app.listen(port,()=>{
-    console.log(`The API Gateway running on ${port}`);
-    
+app.listen(port, () => {
+  console.log(`The API Gateway running on ${port}`);
+
 })
 
